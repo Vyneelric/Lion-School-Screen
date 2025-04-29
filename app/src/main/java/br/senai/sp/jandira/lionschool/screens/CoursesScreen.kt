@@ -32,8 +32,11 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,13 +55,13 @@ fun CoursesScreen(navegacao: NavHostController?){
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 20.dp, vertical = 20.dp)
             .background(Color.White)
     ){
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxSize()
+                .padding(horizontal = 20.dp, vertical = 20.dp)
                 .background(Color.Transparent),
             horizontalAlignment = Alignment.Start
         ){
@@ -157,42 +160,96 @@ fun CoursesScreen(navegacao: NavHostController?){
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .background(Color.Magenta)
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
+                    .background(Color.Transparent),
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
-                Column(
+                Card(
                     modifier = Modifier
-                        .height(300.dp)
-                        .background(Color.Green)
+                        .height(209.dp)
+                        .width(322.dp)
+                        .border(BorderStroke(2.dp, color = Color(0xFFFFC23D))),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.Transparent
+                    )
                 ){
-                    Row(
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
-                            .background(Color.Blue),
-                        verticalAlignment = Alignment.CenterVertically
+                            .height(209.dp)
+                            .width(322.dp)
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(Color(0xFF3347B0),
+                                        Color(0xFFCFD4EA)
+                                    )
+                                )
+                            ),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ){
-                        Image(
+                        Row(
                             modifier = Modifier
-                                .size(130.dp)
-                                .padding(horizontal = 10.dp)
-                            ,
-                            painter = painterResource(R.drawable.ds),
-                            contentDescription = "",
-                        )
-                        Text(
-                            text = stringResource(R.string.acronym_ds),
-                            fontSize = 64.sp,
-                            fontWeight = FontWeight.W800,
-                            color = Color(0xFFFFC23D)
-                        )
-                    }
-                    Column() {
-                        Text(
-                            text = stringResource(R.string.desc_course_ds),
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.W800,
-                            color = Color(0xFFFFC23D)
-                        )
+                                .fillMaxWidth()
+                                .height(120.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ){
+                            Image(
+                                modifier = Modifier
+                                    .size(130.dp)
+                                    .padding(horizontal = 15.dp)
+                                    .padding(top = 10.dp)
+                                ,
+                                painter = painterResource(R.drawable.ds),
+                                contentDescription = "",
+                            )
+                            Text(
+                                text = stringResource(R.string.acronym_ds),
+                                fontSize = 64.sp,
+                                fontWeight = FontWeight.W800,
+                                color = Color(0xFFFFC23D)
+                            )
+                        }
+                        Column(
+                            modifier = Modifier
+                                .padding(horizontal = 15.dp)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.name_course_ds),
+                                fontSize = 21.sp,
+                                fontWeight = FontWeight.W800,
+                                color = Color(0xFFFFFFFF),
+                                textAlign = TextAlign.Left
+                            )
+                            Text(
+                                text = stringResource(R.string.desc_course_ds),
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.W400,
+                                color = Color(0xFFFFFFFF),
+                                modifier = Modifier
+                                    .padding(top = 5.dp)
+                            )
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 20.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
+                                Image(
+                                    modifier = Modifier
+                                        .size(15.dp),
+                                    painter = painterResource(R.drawable.relogio),
+                                    contentDescription = ""
+                                )
+                                Text(
+                                    text = stringResource(R.string.semesters),
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.W300,
+                                    color = Color(0xFFFFFFFF),
+                                    modifier = Modifier
+                                        .padding(horizontal = 4.dp)
+                                )
+                            }
+                        }
                     }
                 }
             }
